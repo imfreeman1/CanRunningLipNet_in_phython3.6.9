@@ -14,8 +14,8 @@ class VideoAugmenter(object):
         for sub in align.align:
             # Create new video
             _video = Video(video.vtype, video.face_predictor_path)
-            _video.face = video.face[sub[0]:sub[1]]
-            _video.mouth = video.mouth[sub[0]:sub[1]]
+            _video.face = video.face[int(sub[0]):int(sub[1])]
+            _video.mouth = video.mouth[int(sub[0]):int(sub[1])]
             _video.set_data(_video.mouth)
             # Create new align
             _align = Align(align.absolute_max_string_len, align.label_func).from_array([(0, sub[1]-sub[0], sub[2])]) # Align로 인스턴스 생성 label_func를 찾아봐야할 듯.

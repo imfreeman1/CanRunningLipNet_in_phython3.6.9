@@ -8,7 +8,7 @@ class Align(object):
     def from_file(self, path):
         with open(path, 'r') as f: # path를 'read'모드로 열기
             lines = f.readlines()   # readlines()로 path내용 읽기.
-        align = [(y[0]//1000, y[1]//1000, y[2]) for y in [x.strip().split(" ") for x in lines]] # align
+        align = [(int(y[0])/1000, int(y[1])/1000, y[2]) for y in [x.strip().split(" ") for x in lines]] # align
         self.build(align)
         return self
 

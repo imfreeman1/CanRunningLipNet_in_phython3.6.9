@@ -71,28 +71,24 @@ def train(run_name, speaker, start_epoch, stop_epoch, img_c, img_w, img_h, frame
     # define callbacks
     statistics  = Statistics(lipnet, lip_gen.next_val(), decoder, 256, output_dir=os.path.join(OUTPUT_DIR, run_name))
     visualize   = Visualize(os.path.join(OUTPUT_DIR, run_name), lipnet, lip_gen.next_val(), decoder, num_display_sentences=minibatch_size)
-    # tensorboard = TensorBoard(log_dir=os.path.join(LOG_DIR, run_name))
+    tensorboard = TensorBoard(log_dir=os.path.join(LOG_DIR, run_name))
     csv_logger  = CSVLogger(os.path.join(LOG_DIR, "{}-{}.csv".format('training',run_name)), separator=',', append=True)
     checkpoint  = ModelCheckpoint(os.path.join(OUTPUT_DIR, run_name, "weights{epoch:02d}.h5"), monitor='val_loss', save_weights_only=True, mode='auto', period=1)
-    print(type(statistics))
-    print(type(visualize))
-    print(type(csv_logger))
-    print(type(checkpoint))
-    print(type(lip_gen))
+    
     lipnet.model.fit_generator(generator=lip_gen.next_train(),
                         steps_per_epoch=lip_gen.default_training_steps, epochs=stop_epoch,
                         validation_data=lip_gen.next_val(), validation_steps=1,
-                        # callbacks=[statistics, visualize, lip_gen], # checkpoint, tensorboard, csv_logger], # bytes ,str <<
+                        callbacks=[statistics, visualize, lip_gen,checkpoint, tensorboard, csv_logger], # bytes ,str <<
                         initial_epoch=start_epoch,
-                        verbose=1)
-                        # max_q_size=5,
-                        # workers=2,
+                        verbose=1,
+                        max_q_size=5,
+                        workers=2)
                         # pickle_safe=True)
 
 if __name__ == '__main__':
     run_name = datetime.datetime.now().strftime('%Y:%m:%d:%H:%M:%S')
     speaker = sys.argv[1]
-    train(run_name, speaker, 0, 1, 3, 100, 50, 66, 32, 2)
+    train(run_name, speaker, 0, 5, 3, 100, 50, 75, 32, 2)
 
     # lipnet = LipNet(img_c=img_c, img_w=img_w, img_h=img_h, frames_n=frames_n,
     #                         absolute_max_string_len=absolute_max_string_len, output_size=lip_gen.get_output_size())
