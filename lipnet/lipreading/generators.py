@@ -74,7 +74,7 @@ class BasicGenerator(keras.callbacks.Callback):     # 기본 제네레이터
         return self.validation_size / self.minibatch_size
 
     def get_output_size(self):      #알파벳 갯수 + 빈칸 + CTC 빈칸  = 28
-        return 28
+        return 11174
 
     def get_cache_path(self):
         return self.dataset_path.rstrip('/') + '.cache'     # dataset_path의 '/'와 ' ' 제거하고 .cache 붙임.
@@ -108,6 +108,7 @@ class BasicGenerator(keras.callbacks.Callback):     # 기본 제네레이터
             video_id = os.path.splitext(video_path)[0].split('/')[-1]   # video_path의 [0]를 split('/'), 가장 뒤에 것을 사용.
             align_path = os.path.join(self.align_path, video_id)+".align"       # align path 받기
             align_hash[video_id] = Align(self.absolute_max_string_len, text_to_labels).from_file(align_path)    # align_hash dict에 key는 video_id Align의 label_func을 text_to_labels로 하고 align_path읽어서 결과를 value
+            print(align_hash[video_id])
         return align_hash
 
     def build_dataset(self):

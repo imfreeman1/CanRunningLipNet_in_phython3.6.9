@@ -54,7 +54,7 @@ def decode(y_pred, input_length, greedy=True, beam_width=100, top_paths=1, **kwa
     return result
 
 class Decoder(object):
-    def __init__(self, greedy=True, beam_width=100, top_paths=1, **kwargs):
+    def __init__(self, greedy=True, beam_width=10, top_paths=1, **kwargs):
         self.greedy         = greedy
         self.beam_width     = beam_width
         self.top_paths      = top_paths

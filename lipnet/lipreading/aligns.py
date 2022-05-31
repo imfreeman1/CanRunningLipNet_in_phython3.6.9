@@ -6,8 +6,10 @@ class Align(object):
         self.absolute_max_string_len = absolute_max_string_len  #완전한 문장의 길이
 
     def from_file(self, path):
-        with open(path, 'r') as f: # path를 'read'모드로 열기
+        with open(path, 'r', encoding='utf8') as f: # path를 'read'모드로 열기
             lines = f.readlines()   # readlines()로 path내용 읽기.
+            print(f.readlines())
+        print('==========================here====================')
         align = [(int(y[0])/1000, int(y[1])/1000, y[2]) for y in [x.strip().split(" ") for x in lines]] # align
         self.build(align)
         return self

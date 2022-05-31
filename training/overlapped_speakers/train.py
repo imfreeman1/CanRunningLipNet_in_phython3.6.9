@@ -16,11 +16,25 @@ np.random.seed(55)
 
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
+print(CURRENT_PATH)
+
 PREDICT_GREEDY      = False
 PREDICT_BEAM_WIDTH  = 200
-PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','..','common','dictionaries','grid.txt')
+PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','..','common','dictionaries','grid_test.txt')
 
 def curriculum_rules(epoch):
+    if epoch < 1:
+        return { 'sentence_length': 1 }
+    elif 1 <= epoch < 2:
+        return { 'sentence_length': 2 }
+    elif 2 <= epoch < 3:
+        return { 'sentence_length': 2, 'flip_probability': 0.5 }
+    elif 3 <= epoch < 4:
+        return { 'sentence_length': 3, 'flip_probability': 0.5, 'jitter_probability': 0.05 }
+    elif 4 <= epoch < 5:
+        return { 'sentence_length': -1 }
+    elif 5 <= epoch < 6:
+        return { 'sentence_length': -1, 'flip_probability': 0.5 }
     return { 'sentence_length': -1, 'flip_probability': 0.5, 'jitter_probability': 0.05 }
 
 
@@ -48,6 +62,7 @@ def train(run_name, speaker, start_epoch, stop_epoch, img_c, img_w, img_h, frame
     # load weight if necessary
     if start_epoch > 0:
         weight_file = os.path.join(OUTPUT_DIR, os.path.join(run_name, 'weights%02d.h5' % (start_epoch - 1)))
+        
         lipnet.model.load_weights(weight_file)
 
     spell = Spell(path=PREDICT_DICTIONARY)
@@ -60,18 +75,22 @@ def train(run_name, speaker, start_epoch, stop_epoch, img_c, img_w, img_h, frame
     tensorboard = TensorBoard(log_dir=os.path.join(LOG_DIR, run_name))
     csv_logger  = CSVLogger(os.path.join(LOG_DIR, "{}-{}.csv".format('training',run_name)), separator=',', append=True)
     checkpoint  = ModelCheckpoint(os.path.join(OUTPUT_DIR, run_name, "weights{epoch:02d}.h5"), monitor='val_loss', save_weights_only=True, mode='auto', period=1)
-
+    
     lipnet.model.fit_generator(generator=lip_gen.next_train(),
                         steps_per_epoch=lip_gen.default_training_steps, epochs=stop_epoch,
-                        validation_data=lip_gen.next_val(), validation_steps=lip_gen.default_validation_steps,
-                        callbacks=[checkpoint, statistics, visualize, lip_gen, tensorboard, csv_logger],
+                        validation_data=lip_gen.next_val(), validation_steps=1,
+                        callbacks=[statistics, visualize, lip_gen, checkpoint, tensorboard, csv_logger], # bytes ,str <<
                         initial_epoch=start_epoch,
                         verbose=1,
                         max_q_size=5,
-                        workers=2,
-                        pickle_safe=True)
+                        workers=2)
+                        # pickle_safe=True)
 
 if __name__ == '__main__':
     run_name = datetime.datetime.now().strftime('%Y:%m:%d:%H:%M:%S')
     speaker = sys.argv[1]
-    train(run_name, speaker, 0, 5000, 3, 100, 50, 75, 32, 50)
+    train(run_name, speaker, 0, 10, 3, 100, 50, 66, 32, 50)
+
+    # lipnet = LipNet(img_c=img_c, img_w=img_w, img_h=img_h, frames_n=frames_n,
+    #                         absolute_max_string_len=absolute_max_string_len, output_size=lip_gen.get_output_size())
+    # def train(run_name, speaker, start_epoch, stop_epoch, img_c, img_w, img_h, frames_n, absolute_max_string_len, minibatch_size):
