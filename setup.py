@@ -23,10 +23,11 @@ setup(name='lipnet',
         'nltk==3.2.2',
         'sk-video==1.1.10',  # 'sk-video==1.1.7',
         'dlib==19.24.0',  # 'dlib==19.4.0',
-        
-        'scikit-image==0.13',
+        'scikit-image==0.13.0',
         'scikit-learn',
         'opencv-python==3.4.1.15',
+        'cmake',
+        'wheel'
     ])
 
     # apt install ffmpeg 필요.

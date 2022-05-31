@@ -101,4 +101,7 @@ ENV/
 # mkdocs documentation
 /site
 
+align
+val
+train
 s2
