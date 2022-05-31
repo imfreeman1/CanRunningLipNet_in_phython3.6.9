@@ -1,3 +1,11 @@
+## make korean sentence  
+  
+변경해야할 파일 목록 정리  
+  
+predict_batch.py,  confusion.py,  Phonemes.txt, spell.sentence가 있는 파일도 변경해야할 듯.  
+align 생성도 필요해 보임.
+
+
 # LipNet: End-to-End Sentence-level Lipreading
 Keras implementation of the method described in the paper 'LipNet: End-to-End Sentence-level Lipreading' by Yannis M. Assael, Brendan Shillingford, Shimon Whiteson, and Nando de Freitas (https://arxiv.org/abs/1611.01599).
 
