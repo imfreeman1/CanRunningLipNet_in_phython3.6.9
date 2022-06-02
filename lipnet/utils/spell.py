@@ -34,8 +34,7 @@ class Spell(object):
 
     def words(self, text):
         text = text.replace('\n', ' ')
-        hangul = re.compile(r'[가-힣]+').findall(text)
-        # print(hangul)
+        hangul = re.findall('[^ ㄱ-ㅣ가-힣]+', text)
 
         hangulencode = []
         for i in range(len(hangul)):
@@ -86,7 +85,7 @@ class Spell(object):
 
         print("sentence===")
         print(sentence)
-        print("unicode_sentence===")
-        print(unicode(sentence))
+        # print("unicode_sentence===")
+        # print(unicode(sentence))
 
-        return unicode(sentence)
+        return sentence

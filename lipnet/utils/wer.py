@@ -76,6 +76,6 @@ def wer_sentence(r, h):
     return wer(r.split(), h.split())
 
 if __name__ == "__main__":
-    # doctest.testmod()
+    doctest.testmod()
     result = wer_sentence("who is there", "is there")
     print(result)

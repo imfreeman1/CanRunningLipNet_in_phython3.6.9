@@ -11,7 +11,7 @@ from keras import backend as K
 
 # LipNet 클래스
 class LipNet(object):
-    def __init__(self, img_c=3, img_w=100, img_h=50, frames_n=75, absolute_max_string_len=32, output_size=28):
+    def __init__(self, img_c=3, img_w=100, img_h=50, frames_n=75, absolute_max_string_len=32, output_size=500):
         self.img_c = img_c  # 이미지 channel
         self.img_w = img_w  # 이미지 width
         self.img_h = img_h  # 이미지 height

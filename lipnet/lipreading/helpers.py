@@ -13,7 +13,7 @@ def labels_to_text(labels):
     for c in labels:
         if c >= 0 and c <= 11171:
             c += ord(u'가')
-            text += unichr(c)
+            text += chr(c)
         elif c == 11172:
             text += ' '
     return text
