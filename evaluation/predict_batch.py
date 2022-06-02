@@ -19,7 +19,7 @@ FACE_PREDICTOR_PATH = os.path.join(CURRENT_PATH,'..','common','predictors','shap
 
 PREDICT_GREEDY      = False
 PREDICT_BEAM_WIDTH  = 200
-PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid.txt')
+PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid_test.txt')
 
 lipnet = None
 adam = None
