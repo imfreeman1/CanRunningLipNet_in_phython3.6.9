@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import re
 import string
 import io
@@ -81,11 +83,11 @@ class Spell(object):
 
     # Correct sentence
     def sentence(self, sentence):
-        #return untokenize(sentence)
+        return untokenize(sentence)
 
-        print("sentence===")
-        print(sentence)
+        # print("sentence===")
+        # print(sentence)
         # print("unicode_sentence===")
         # print(unicode(sentence))
 
-        return sentence
+        # return sentence

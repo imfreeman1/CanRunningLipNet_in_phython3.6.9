@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 def text_to_labels(text):
     ret = []
     for char in text:
@@ -11,7 +14,7 @@ def labels_to_text(labels):
     # 26 is space, 가 = 44032 / 힣 = 55203
     text = ''
     for c in labels:
-        if c >= 0 and c <= 11171:
+        if c >= 0 and c < 11172:
             c += ord(u'가')
             text += chr(c)
         elif c == 11172:

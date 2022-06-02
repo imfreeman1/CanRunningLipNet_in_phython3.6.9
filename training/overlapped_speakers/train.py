@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from keras.optimizers import Adam
 from keras.callbacks import TensorBoard, CSVLogger, ModelCheckpoint
 from lipnet.lipreading.generators import BasicGenerator
@@ -89,7 +91,7 @@ def train(run_name, speaker, start_epoch, stop_epoch, img_c, img_w, img_h, frame
 if __name__ == '__main__':
     run_name = datetime.datetime.now().strftime('%Y:%m:%d:%H:%M:%S')
     speaker = sys.argv[1]
-    train(run_name, speaker, 0, 10, 3, 100, 50, 66, 32, 50)
+    train(run_name, speaker, 0, 10, 3, 100, 50, 66, 32, 2)
 
     # lipnet = LipNet(img_c=img_c, img_w=img_w, img_h=img_h, frames_n=frames_n,
     #                         absolute_max_string_len=absolute_max_string_len, output_size=lip_gen.get_output_size())

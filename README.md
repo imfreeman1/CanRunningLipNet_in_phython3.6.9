@@ -4,7 +4,12 @@
   
 predict_batch.py,  confusion.py,  Phonemes.txt, spell.sentence가 있는 파일도 변경해야할 듯.  
 align 생성도 필요해 보임.
-
+변경해야할 파일 목록 정리  
+  
+predict_batch.py,  confusion.py,  Phonemes.txt, spell.sentence가 있는 파일도 변경해야할 듯.  
+align 생성도 필요해 보임.
+  
+Dictionary의 패키지를 받아서 사용하는건 안되려나 grid_test.txt처럼??  align의 단어들을 모으면 token이 되는 듯 한데..::
 
 # LipNet: End-to-End Sentence-level Lipreading
 Keras implementation of the method described in the paper 'LipNet: End-to-End Sentence-level Lipreading' by Yannis M. Assael, Brendan Shillingford, Shimon Whiteson, and Nando de Freitas (https://arxiv.org/abs/1611.01599).

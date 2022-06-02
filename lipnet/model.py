@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from keras.layers.convolutional import Conv3D, ZeroPadding3D
 from keras.layers.pooling import MaxPooling3D
 from keras.layers.core import Dense, Activation, Dropout, Flatten
@@ -11,7 +13,7 @@ from keras import backend as K
 
 # LipNet 클래스
 class LipNet(object):
-    def __init__(self, img_c=3, img_w=100, img_h=50, frames_n=75, absolute_max_string_len=32, output_size=500):
+    def __init__(self, img_c=3, img_w=100, img_h=50, frames_n=75, absolute_max_string_len=32, output_size=11174):
         self.img_c = img_c  # 이미지 channel
         self.img_w = img_w  # 이미지 width
         self.img_h = img_h  # 이미지 height

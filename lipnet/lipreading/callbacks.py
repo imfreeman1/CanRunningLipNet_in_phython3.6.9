@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from lipnet.utils.wer import wer_sentence
 from nltk.translate import bleu_score
 import numpy as np
@@ -127,4 +129,4 @@ class Visualize(keras.callbacks.Callback):
             csvw = csv.writer(csvfile)
             csvw.writerow(["Truth", "Decoded"])
             for i in range(self.num_display_sentences):
-                csvw.writerow([output_batch['source_str'][i], res[i]])
+                csvw.writerow([(output_batch['source_str'][i]), res[i]])
