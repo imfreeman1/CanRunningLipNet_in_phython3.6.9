@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from keras.layers.convolutional import Conv3D, ZeroPadding3D
 from keras.layers.pooling import MaxPooling3D
 from keras.layers.core import Dense, Activation, Dropout, Flatten

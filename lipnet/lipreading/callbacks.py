@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from lipnet.utils.wer import wer_sentence
 from nltk.translate import bleu_score
 import numpy as np

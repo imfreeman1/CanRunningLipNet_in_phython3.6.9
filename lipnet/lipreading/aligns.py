@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import numpy as np
 
 class Align(object):
@@ -12,7 +11,7 @@ class Align(object):
             lines = f.readlines()   # readlines()로 path내용 읽기.
             print(f.readlines())
         print('==========================here====================')
-        align = [(int(y[0])/1000, int(y[1])/1000, y[2]) for y in [x.decode('utf-8').strip().split(" ") for x in lines]] # align
+        align = [(int(y[0])/1000, int(y[1])/1000, y[2]) for y in [x.strip().split(" ") for x in lines]] # align
         self.build(align)
         return self
 

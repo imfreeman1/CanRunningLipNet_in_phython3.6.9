@@ -19,7 +19,7 @@ FACE_PREDICTOR_PATH = os.path.join(CURRENT_PATH,'..','common','predictors','shap
 
 PREDICT_GREEDY      = False
 PREDICT_BEAM_WIDTH  = 200
-PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid_test.txt')
+PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid2.txt')
 
 lipnet = None
 adam = None
@@ -34,7 +34,7 @@ def predict(weight_path, video):
 
     if lipnet is None:
         lipnet = LipNet(img_c=3, img_w=100, img_h=50, frames_n=75,
-                        absolute_max_string_len=32, output_size=28)
+                        absolute_max_string_len=32, output_size=11174)
 
         adam = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 
@@ -54,7 +54,7 @@ def predict(weight_path, video):
     show_video_subtitle(video.face, result)
     print (result)
 
-def predicts(weight_path, videos_path, absolute_max_string_len=32, output_size=28):
+def predicts(weight_path, videos_path, absolute_max_string_len=32, output_size=11174):
     videos = []
     for video_path in glob.glob(os.path.join(videos_path, '*')):
         videos.append(load(video_path))

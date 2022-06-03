@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from keras import backend as K
 import numpy as np
+import pdb
 
 def _decode(y_pred, input_length, greedy=True, beam_width=100, top_paths=1):
     """Decodes the output of a softmax.
@@ -56,7 +55,7 @@ def decode(y_pred, input_length, greedy=True, beam_width=100, top_paths=1, **kwa
     return result
 
 class Decoder(object):
-    def __init__(self, greedy=True, beam_width=10, top_paths=1, **kwargs):
+    def __init__(self, greedy=True, beam_width=100, top_paths=1, **kwargs):
         self.greedy         = greedy
         self.beam_width     = beam_width
         self.top_paths      = top_paths
@@ -69,6 +68,7 @@ class Decoder(object):
                          top_paths=self.top_paths, language_model=self.language_model)
         # 전처리 리스트
         preprocessed = []
+        # pdb.set_trace()
         for output in decoded:
             out = output
             for postprocessor in self.postprocessors:

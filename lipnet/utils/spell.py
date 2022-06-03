@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import re
 import string
 import io
 from collections import Counter
 import codecs
+import pdb
 
 
 # Source: https://github.com/commonsense/metanl/blob/master/metanl/token_utils.py
@@ -25,25 +25,30 @@ def untokenize(words):
 
 # Source: https://stackoverflow.com/questions/367155/splitting-a-string-into-words-and-punctuation
 def tokenize(text):
-    return re.findall(r"\w+|[^\w\s]", text)
+    return re.findall(r"\W+", text)
 
 # Source: http://norvig.com/spell-correct.html (with some modifications)
 class Spell(object):
     def __init__(self, path): # 
+        # pdb.set_trace()
         print(f'======================={path}==========================')
-        self.dictionary = Counter(self.words(io.open(path, 'r', encoding='utf-8').read()))
+        self.dictionary = Counter(self.words(io.open(path, 'r',encoding='utf-8').read()))
         print("dictionary" + str(self.dictionary))
 
     def words(self, text):
+        # pdb.set_trace()
         text = text.replace('\n', ' ')
-        hangul = re.findall('[^ ㄱ-ㅣ가-힣]+', text)
-
-        hangulencode = []
-        for i in range(len(hangul)):
-            hangulencode.append(hangul[i])
-            #print hangul[i]
-        #print hangulencode
-        return hangulencode
+        # hangul = re.findall('[^ ㄱ-ㅣ가-힣+]', text)
+        hangul = re.compile('[^ ㄱ-ㅣ가-힣+]')
+        result = hangul.sub('', text)
+        result = list(result)
+        return result
+        # hangulencode = []
+        # for i in range(len(hangul)):
+        #     hangulencode.append(hangul[i])
+        #     print(hangul[i])
+        # #print hangulencode
+        # return hangulencode
 
     def P(self, word, N=None):
         "Probability of `word`."
@@ -83,11 +88,11 @@ class Spell(object):
 
     # Correct sentence
     def sentence(self, sentence):
-        return untokenize(sentence)
+        # return untokenize(sentence)
 
         # print("sentence===")
         # print(sentence)
         # print("unicode_sentence===")
         # print(unicode(sentence))
 
-        # return sentence
+        return sentence

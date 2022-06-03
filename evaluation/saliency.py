@@ -19,9 +19,9 @@ FACE_PREDICTOR_PATH = os.path.join(CURRENT_PATH,'..','common','predictors','shap
 
 PREDICT_GREEDY      = False
 PREDICT_BEAM_WIDTH  = 200
-PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid_test.txt')
+PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid2.txt')
 
-def predict(weight_path, video_path, absolute_max_string_len=32, output_size=28):
+def predict(weight_path, video_path, absolute_max_string_len=32, output_size=11174):
     print ("\nLoading data from disk...")
     video = Video(vtype='face', face_predictor_path=FACE_PREDICTOR_PATH)
     if os.path.isfile(video_path):
@@ -56,7 +56,7 @@ def predict(weight_path, video_path, absolute_max_string_len=32, output_size=28)
     y_pred         = lipnet.predict(X_data)
     result         = decoder.decode(y_pred, input_length)[0]
 
-    heatmap = visualize_saliency(lipnet.model, layer_idx, range(0,28), video.data)
+    heatmap = visualize_saliency(lipnet.model, layer_idx, range(0,11174), video.data)
 
     return (heatmap, result)
 

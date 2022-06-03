@@ -15,7 +15,7 @@ CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 PREDICT_GREEDY      = False
 PREDICT_BEAM_WIDTH  = 200
-PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid_test.txt')
+PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid2.txt')
 
 def stats(weight_path, dataset_path, img_c, img_w, img_h, frames_n, absolute_max_string_len, minibatch_size):
 	lip_gen = BasicGenerator(dataset_path=dataset_path, 

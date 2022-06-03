@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from lipnet.lipreading.videos import Video
 from lipnet.lipreading.visualization import show_video_subtitle
 from lipnet.core.decoders import Decoder
@@ -20,7 +19,7 @@ FACE_PREDICTOR_PATH = os.path.join(CURRENT_PATH,'..','common','predictors','shap
 
 PREDICT_GREEDY      = False
 PREDICT_BEAM_WIDTH  = 200
-PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid_test.txt')
+PREDICT_DICTIONARY  = os.path.join(CURRENT_PATH,'..','common','dictionaries','grid2.txt')
 
 def predict(weight_path, video_path, absolute_max_string_len=32, output_size=11174):
     print ("\nLoading data from disk...")

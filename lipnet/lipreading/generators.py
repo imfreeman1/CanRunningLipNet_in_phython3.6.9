@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from lipnet.lipreading.helpers import text_to_labels
 from lipnet.lipreading.videos import Video
 from lipnet.lipreading.aligns import Align
