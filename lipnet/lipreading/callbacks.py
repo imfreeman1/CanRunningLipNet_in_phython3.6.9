@@ -121,7 +121,7 @@ class Visualize(keras.callbacks.Callback):
         y_pred       = self.model_container.predict(output_batch['the_input'][0:self.num_display_sentences])  # 추론 결과
         input_length = output_batch['input_length'][0:self.num_display_sentences]  # 인풋 길이
         res          = self.decoder.decode(y_pred, input_length)  # 디코딩결과
-
+        print(res)
         # write binary mode 로 csv 파일 작성
         with open(os.path.join(self.output_dir, 'e%02d.csv' % (epoch)), 'w', encoding='utf-8', newline='') as csvfile:
             csvw = csv.writer(csvfile)

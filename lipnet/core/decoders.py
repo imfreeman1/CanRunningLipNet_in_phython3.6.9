@@ -74,5 +74,4 @@ class Decoder(object):
             for postprocessor in self.postprocessors:
                 out = postprocessor(out)  # 후처리 결과값
             preprocessed.append(out)  # 전처리 리스트에 요소 추가
-
         return preprocessed  # 리스트 반환

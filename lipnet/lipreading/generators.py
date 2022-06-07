@@ -17,7 +17,7 @@ import multiprocessing
 # or datasets/[train|val]/<sid>/<id>.mpg
 # datasets/align/<id>.align
 class BasicGenerator(keras.callbacks.Callback):     # 기본 제네레이터 
-    def __init__(self, dataset_path, minibatch_size, img_c, img_w, img_h, frames_n, absolute_max_string_len=30, **kwargs):
+    def __init__(self, dataset_path, minibatch_size, img_c, img_w, img_h, frames_n, absolute_max_string_len=32, **kwargs):
         self.dataset_path   = dataset_path
         self.minibatch_size = minibatch_size
         self.blank_label    = self.get_output_size() - 1
@@ -208,8 +208,9 @@ class BasicGenerator(keras.callbacks.Callback):     # 기본 제네레이터
             ret = self.get_batch(cur_train_index, self.minibatch_size, train=True)
             # if epoch_differences > 0:
             #     print ("GENERATOR EPOCH {} - {}:{}".format(self.process_train_epoch, cur_train_index, cur_train_index + self.minibatch_size))
-            #     print (ret[0]['source_str'])
+            # print (ret[0]['source_str'])
             #     print ("-------------------")
+            # print(decoder.decode())
             yield ret
 
     @threadsafe_generator
